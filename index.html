@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr. Minutes</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body {
+        width: 100%; height: 100%;
+        overflow: hidden;
+        background: transparent;
+      }
+      #stage {
+        position: relative;
+        width: 100vw; height: 100vh;
+        background: transparent;
+        pointer-events: none;
+      }
+      #mascot {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        pointer-events: auto;
+        cursor: pointer;
+        transform-origin: bottom center;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stage">
+      <video
+        id="mascot"
+        src="./idle.webm"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
+    </div>
+    <script src="./speak.js"></script>
+    <script src="./move.js"></script>
+  </body>
+</html>

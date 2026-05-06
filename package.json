@@ -1,0 +1,18 @@
+{
+  "name": "miss-minutes-mascot",
+  "version": "1.0.0",
+  "description": "Miss Minutes Mascot desktop overlay",
+  "main": "main.js",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "electron": "^41.3.0",
+    "node-record-lpcm16": "^1.0.1",
+    "nodejs-whisper": "^0.3.0"
+  }
+}
