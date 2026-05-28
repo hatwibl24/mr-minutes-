@@ -4,15 +4,19 @@
   "description": "Miss Minutes Mascot desktop overlay",
   "main": "main.js",
   "scripts": {
-    "start": "env -u ELECTRON_RUN_AS_NODE electron ."
+    "start": "env -u ELECTRON_RUN_AS_NODE electron .",
+    "test-deepgram": "node -r dotenv/config -e \"const WebSocket=require('ws');const k=process.env.DEEPGRAM_API_KEY;if(!k){console.error('Missing DEEPGRAM_API_KEY in .env');process.exit(1);}const u='wss://api.deepgram.com/v1/listen?model=nova-2&language=en';const ws=new WebSocket(u,{headers:{Authorization:'Token '+k}});ws.on('open',()=>{console.log('CONNECTED');ws.close();});ws.on('message',m=>console.log(m.toString()));ws.on('error',e=>console.error('ERROR:',e.message));ws.on('close',c=>console.log('CLOSED:',c));\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@deepgram/sdk": "^5.2.0",
+    "@nut-tree-fork/nut-js": "^4.2.6",
+    "dotenv": "^17.4.2",
     "electron": "^41.3.0",
-    "node-record-lpcm16": "^1.0.1",
-    "nodejs-whisper": "^0.3.0"
+    "mic": "^2.1.2",
+    "ws": "^8.18.0"
   }
 }

@@ -26,17 +26,99 @@
         transform-origin: bottom center;
         display: none;
       }
+
+      /* speech bubble — already tracked by positionBubble() in move.js */
+      #bubble {
+        position: absolute;
+        max-width: min(380px, 70vw);
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(20, 20, 20, 0.78);
+        color: #fff;
+        font: 14px/1.25 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        letter-spacing: 0.2px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 160ms ease, transform 160ms ease;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      #bubble.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── TEXT INPUT — positioned by JS to follow mascot ── */
+      #text-input-wrap {
+        position: absolute;
+        display: none;          /* JS sets display:flex when open */
+        align-items: center;
+        gap: 6px;
+        pointer-events: auto;
+        z-index: 10;
+      }
+
+      #text-input {
+        width: 260px;
+        padding: 8px 14px;
+        border-radius: 22px;
+        border: 1.5px solid rgba(255,255,255,0.22);
+        background: rgba(18, 18, 18, 0.85);
+        color: #fff;
+        font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        outline: none;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        caret-color: #fff;
+        transition: border-color 140ms ease;
+      }
+      #text-input:focus {
+        border-color: rgba(255,255,255,0.5);
+      }
+      #text-input::placeholder {
+        color: rgba(255,255,255,0.35);
+      }
+
+      #text-send-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255,255,255,0.16);
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 130ms ease;
+      }
+      #text-send-btn:hover  { background: rgba(255,255,255,0.28); }
+      #text-send-btn:active { background: rgba(255,255,255,0.42); }
     </style>
   </head>
   <body>
     <div id="stage">
+      <div id="bubble"></div>
+
+      <!-- text input box, JS will position it above the mascot -->
+      <div id="text-input-wrap">
+        <input
+          id="text-input"
+          type="text"
+          placeholder="Type a command…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="text-send-btn" title="Send">&#9654;</button>
+      </div>
+
       <video
         id="mascot"
         src="./idle.webm"
-        autoplay
-        loop
-        muted
-        playsinline
+        autoplay loop muted playsinline
       ></video>
     </div>
     <script src="./speak.js"></script>
